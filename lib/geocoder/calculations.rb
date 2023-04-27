@@ -115,7 +115,7 @@ module Geocoder
     #
     # Based on: http://www.movable-type.co.uk/scripts/latlong.html
     #
-    def bearing_between(point1, point2, options = {})
+    def bearing_between(point1, point2, **options)
 
       # set default options
       options[:method] ||= Geocoder.config.distances

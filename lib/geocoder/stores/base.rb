@@ -36,11 +36,11 @@ module Geocoder
       # See Geocoder::Calculations.distance_between for
       # ways of specifying the point.
       #
-      def bearing_to(point, options = {})
+      def bearing_to(point, **options)
         options[:method] ||= self.class.geocoder_options[:method]
         return nil unless geocoded?
         Geocoder::Calculations.bearing_between(
-          to_coordinates, point, options)
+          to_coordinates, point, **options)
       end
 
       ##
@@ -48,11 +48,11 @@ module Geocoder
       # See Geocoder::Calculations.distance_between for
       # ways of specifying the point.
       #
-      def bearing_from(point, options = {})
+      def bearing_from(point, **options)
         options[:method] ||= self.class.geocoder_options[:method]
         return nil unless geocoded?
         Geocoder::Calculations.bearing_between(
-          point, to_coordinates, options)
+          point, to_coordinates, **options)
       end
 
       ##
@@ -97,7 +97,7 @@ module Geocoder
           end
           hash
         end
-        results = Geocoder.search(query, query_options)
+        results = Geocoder.search(query, **query_options)
 
         # execute custom block, if specified in configuration
         block_key = reverse ? :reverse_block : :geocode_block
